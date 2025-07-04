@@ -36,11 +36,11 @@ albumsRouter.post(
   "/",
   celebrate({
     [Segments.BODY]: {
-      nome: Joi.string().required(),
-      artista: Joi.string().required(),
-      ano_lancamento: Joi.date().required(),
-      genero: Joi.string().required(),
-      duracao_total: Joi.number().optional().default(0),
+      nome: Joi.string().required().min(2).max(100),
+      artista: Joi.string().required().min(2).max(100),
+      ano_lancamento: Joi.date().required().max('now').min('1900-01-01'),
+      genero: Joi.string().required().valid('Pop', 'Rock', 'Hip Hop', 'R&B', 'Eletrônica', 'Jazz', 'Clássica', 'MPB', 'Sertanejo', 'Funk', 'Reggae', 'Outro'),
+      duracao_total: Joi.number().optional().default(0).min(0),
     },
   }),
   async (req, res, next) => {
@@ -60,11 +60,11 @@ albumsRouter.put(
       id: Joi.string().uuid().required(),
     },
     [Segments.BODY]: {
-      nome: Joi.string().required(),
-      artista: Joi.string().required(),
-      ano_lancamento: Joi.date().required(),
-      genero: Joi.string().required(),
-      duracao_total: Joi.number().optional().default(0),
+      nome: Joi.string().required().min(2).max(100),
+      artista: Joi.string().required().min(2).max(100),
+      ano_lancamento: Joi.date().required().max('now').min('1900-01-01'),
+      genero: Joi.string().required().valid('Pop', 'Rock', 'Hip Hop', 'R&B', 'Eletrônica', 'Jazz', 'Clássica', 'MPB', 'Sertanejo', 'Funk', 'Reggae', 'Outro'),
+      duracao_total: Joi.number().optional().default(0).min(0),
     },
   }),
   async (req, res, next) => {
